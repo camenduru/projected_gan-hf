@@ -16,9 +16,11 @@ from huggingface_hub import hf_hub_download
 
 sys.path.insert(0, 'projected_gan')
 
-ORIGINAL_REPO_URL = 'https://github.com/autonomousvision/projected_gan'
 TITLE = 'autonomousvision/projected_gan'
-DESCRIPTION = f'This is a demo for {ORIGINAL_REPO_URL}.'
+DESCRIPTION = '''This is a demo for https://github.com/autonomousvision/projected_gan.
+
+Expected execution time on Hugging Face Spaces: 1s
+'''
 SAMPLE_IMAGE_DIR = 'https://huggingface.co/spaces/hysts/projected_gan/resolve/main/samples'
 ARTICLE = f'''## Generated images
 - truncation: 0.7
