@@ -44,6 +44,8 @@ ARTICLE = f'''## Generated images
 ![Landscape samples]({SAMPLE_IMAGE_DIR}/landscape.jpg)
 ### Pokemon
 ![Pokemon samples]({SAMPLE_IMAGE_DIR}/pokemon.jpg)
+
+<center><img src="https://visitor-badge.glitch.me/badge?page_id=hysts.projected_gan" alt="visitor badge"/></center>
 '''
 
 TOKEN = os.environ['TOKEN']
