@@ -1,5 +1,5 @@
 ---
-title: Projected_gan
+title: Projected GAN
 emoji: 🌍
 colorFrom: red
 colorTo: indigo
