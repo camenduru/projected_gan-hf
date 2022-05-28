@@ -17,7 +17,7 @@ from huggingface_hub import hf_hub_download
 sys.path.insert(0, 'projected_gan')
 
 TITLE = 'autonomousvision/projected_gan'
-DESCRIPTION = '''This is a demo for https://github.com/autonomousvision/projected_gan.
+DESCRIPTION = '''This is an unofficial demo for https://github.com/autonomousvision/projected_gan.
 
 Expected execution time on Hugging Face Spaces: 1s
 '''
