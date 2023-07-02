@@ -7,10 +7,7 @@ import numpy as np
 
 from model import Model
 
-DESCRIPTION = '''# Projected GAN
-
-This is an unofficial demo for [https://github.com/autonomousvision/projected_gan](https://github.com/autonomousvision/projected_gan).
-'''
+DESCRIPTION = '# [Projected GAN](https://github.com/autonomousvision/projected_gan)'
 
 
 def get_sample_image_url(name: str) -> str:
@@ -36,33 +33,33 @@ with gr.Blocks(css='style.css') as demo:
         with gr.TabItem('App'):
             with gr.Row():
                 with gr.Column():
-                    model_name = gr.Dropdown(model.MODEL_NAMES,
-                                             value=model.MODEL_NAMES[8],
-                                             label='Model')
-                    seed = gr.Slider(0,
-                                     np.iinfo(np.uint32).max,
+                    model_name = gr.Dropdown(label='Model',
+                                             choices=model.MODEL_NAMES,
+                                             value=model.MODEL_NAMES[8])
+                    seed = gr.Slider(label='Seed',
+                                     minimum=0,
+                                     maximum=np.iinfo(np.uint32).max,
                                      step=1,
-                                     value=0,
-                                     label='Seed')
-                    psi = gr.Slider(0,
-                                    2,
+                                     value=0)
+                    psi = gr.Slider(label='Truncation psi',
+                                    minimum=0,
+                                    maximum=2,
                                     step=0.05,
-                                    value=0.7,
-                                    label='Truncation psi')
+                                    value=0.7)
                     run_button = gr.Button('Run')
                 with gr.Column():
                     result = gr.Image(label='Result', elem_id='result')
 
         with gr.TabItem('Sample Images'):
             with gr.Row():
-                model_name2 = gr.Dropdown(model.MODEL_NAMES,
-                                          value=model.MODEL_NAMES[0],
-                                          label='Model')
+                model_name2 = gr.Dropdown(label='Model',
+                                          choices=model.MODEL_NAMES,
+                                          value=model.MODEL_NAMES[0])
             with gr.Row():
                 text = get_sample_image_markdown(model_name2.value)
                 sample_images = gr.Markdown(text)
 
-    model_name.change(fn=model.set_model, inputs=model_name, outputs=None)
+    model_name.change(fn=model.set_model, inputs=model_name)
     run_button.click(fn=model.set_model_and_generate_image,
                      inputs=[
                          model_name,
@@ -74,4 +71,4 @@ with gr.Blocks(css='style.css') as demo:
                        inputs=model_name2,
                        outputs=sample_images)
 
-demo.queue().launch(show_api=False)
+demo.queue(max_size=10).launch()

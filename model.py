@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import pathlib
 import pickle
 import sys
@@ -13,8 +12,6 @@ from huggingface_hub import hf_hub_download
 current_dir = pathlib.Path(__file__).parent
 submodule_dir = current_dir / 'projected_gan'
 sys.path.insert(0, submodule_dir.as_posix())
-
-HF_TOKEN = os.getenv('HF_TOKEN')
 
 
 class Model:
@@ -39,9 +36,8 @@ class Model:
         self.model = self._load_model(self.model_name)
 
     def _load_model(self, model_name: str) -> nn.Module:
-        path = hf_hub_download('hysts/projected_gan',
-                               f'models/{model_name}.pkl',
-                               use_auth_token=HF_TOKEN)
+        path = hf_hub_download('public-data/projected_gan',
+                               f'models/{model_name}.pkl')
         with open(path, 'rb') as f:
             model = pickle.load(f)['G_ema']
         model.eval()
